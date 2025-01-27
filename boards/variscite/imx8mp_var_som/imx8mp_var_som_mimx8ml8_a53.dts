@@ -9,6 +9,7 @@
 
 #include <nxp/nxp_mimx8mp_a53.dtsi>
 #include "imx8mp_var_som-pinctrl.dtsi"
+#include <zephyr/dt-bindings/gpio/gpio.h>
 
 / {
 	model = "Variscite VAR-SOM-MX8M-PLUS A53";
@@ -37,6 +38,17 @@
 		reg = <0xc0000000 DT_SIZE_M(1)>;
 	};
 
+	aliases {
+		led0 = &blinky0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		blinky0: blinky_0 {
+			gpios = <&gpio3 14 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
 };
 
 &uart4 {
@@ -45,4 +57,8 @@
 	clocks = <&ccm IMX_CCM_UART4_CLK 0x6c 24>;
 	pinctrl-0 = <&uart4_default>;
 	pinctrl-names = "default";
+};
+
+&gpio3 {
+	status = "okay";
 };

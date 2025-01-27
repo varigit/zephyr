@@ -9,6 +9,7 @@
 
 #include <nxp/nxp_imx8ml_m7.dtsi>
 #include "imx8mp_var_som-pinctrl.dtsi"
+#include <zephyr/dt-bindings/gpio/gpio.h>
 
 /delete-node/ &ddr_code;
 /delete-node/ &ddr_sys;
@@ -37,6 +38,17 @@
 			device_type = "memory";
 			compatible = "nxp,imx-sys-bus";
 			reg = <0x7e200000 DT_SIZE_M(2)>;
+		};
+	};
+
+	aliases {
+		led0 = &blinky0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		blinky0: blinky_0 {
+			gpios = <&gpio3 14 GPIO_ACTIVE_HIGH>;
 		};
 	};
 };

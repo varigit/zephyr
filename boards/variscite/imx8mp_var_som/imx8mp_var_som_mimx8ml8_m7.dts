@@ -9,6 +9,7 @@
 
 #include <nxp/nxp_imx8ml_m7.dtsi>
 #include "imx8mp_var_som-pinctrl.dtsi"
+#include <zephyr/dt-bindings/gpio/gpio.h>
 
 / {
 	model = "Variscite VAR-SOM-MX8M-PLUS M7";
@@ -21,6 +22,17 @@
 
 		zephyr,console = &uart4;
 		zephyr,shell-uart = &uart4;
+	};
+
+	aliases {
+		led0 = &blinky0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		blinky0: blinky_0 {
+			gpios = <&gpio3 14 GPIO_ACTIVE_HIGH>;
+		};
 	};
 };
 
