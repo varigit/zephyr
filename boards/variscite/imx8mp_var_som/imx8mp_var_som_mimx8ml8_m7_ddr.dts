@@ -43,6 +43,7 @@
 
 	aliases {
 		led0 = &blinky0;
+		sw0 = &button0;
 	};
 
 	leds {
@@ -51,6 +52,15 @@
 			gpios = <&gpio3 14 GPIO_ACTIVE_HIGH>;
 		};
 	};
+
+	keys {
+		compatible = "gpio-keys";
+		button0: btn_0 {
+			label = "BTN0";
+			gpios = <&gpio3 6 (GPIO_PULL_UP|GPIO_ACTIVE_LOW)>;
+		};
+	};
+
 };
 
 &uart4 {
