@@ -9,6 +9,7 @@
 
 #include <nxp/nxp_mimx8mp_a53.dtsi>
 #include "imx8mp_var_dart-pinctrl.dtsi"
+#include <zephyr/dt-bindings/gpio/gpio.h>
 
 / {
 	model = "Variscite DART-MX8M-PLUS A53";
@@ -54,4 +55,19 @@
 		};
 	};
 
+	aliases {
+		led0 = &blinky0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		blinky0: blinky_0 {
+			gpios = <&gpio3 9 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+};
+
+&gpio3 {
+	status = "okay";
 };

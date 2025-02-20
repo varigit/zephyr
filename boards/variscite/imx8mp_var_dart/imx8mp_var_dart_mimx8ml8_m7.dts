@@ -10,6 +10,7 @@
 #include <nxp/nxp_imx8ml_m7.dtsi>
 #include "imx8mp_var_dart-pinctrl.dtsi"
 #include "imx8mp_var_dart_m7-common.dtsi"
+#include <zephyr/dt-bindings/gpio/gpio.h>
 
 / {
 	model = "Variscite DART-MX8M-PLUS M7";
@@ -22,6 +23,17 @@
 
 		zephyr,console = &uart3;
 		zephyr,shell-uart = &uart3;
+	};
+
+	aliases {
+		led0 = &blinky0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		blinky0: blinky_0 {
+			gpios = <&gpio3 9 GPIO_ACTIVE_HIGH>;
+		};
 	};
 };
 
