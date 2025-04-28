@@ -34,8 +34,8 @@
 		};
 	};
 
-	dram: memory@c0000000 {
-		reg = <0xc0000000 DT_SIZE_M(1)>;
+	dram: memory@40480000 {
+		reg = <0x40480000 DT_SIZE_M(1)>;
 	};
 
 	soc {
