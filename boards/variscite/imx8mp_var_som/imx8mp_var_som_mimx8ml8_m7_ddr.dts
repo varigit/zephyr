@@ -28,16 +28,16 @@
 	};
 
 	soc {
-		ddr_code: code@7e000000 {
+		ddr_code: code@7b000000 {
 			device_type = "memory";
 			compatible = "nxp,imx-code-bus";
-			reg = <0x7e000000 DT_SIZE_M(2)>;
+			reg = <0x7b000000 DT_SIZE_M(2)>;
 		};
 
-		ddr_sys: memory@7e200000 {
+		ddr_sys: memory@7b200000 {
 			device_type = "memory";
 			compatible = "nxp,imx-sys-bus";
-			reg = <0x7e200000 DT_SIZE_M(2)>;
+			reg = <0x7b200000 DT_SIZE_M(2)>;
 		};
 	};
 

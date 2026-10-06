@@ -187,7 +187,7 @@ supported: ITCM and DDR). These are the memory mapping for A53 and M7:
 +------------+-------------------------+------------------------+-----------------------+----------------------+
 | OCRAM_S    | 0x00180000-0x00188FFF   | 0x20180000-0x20188FFF  | 0x00180000-0x00188FFF | 36KB                 |
 +------------+-------------------------+------------------------+-----------------------+----------------------+
-| DDR        | 0x80000000-0x803FFFFF   | 0x7E200000-0x7E3FFFFF  | 0x7E000000-0x7E1FFFFF | 2MB                  |
+| DDR        | 0x80000000-0x803FFFFF   | 0x7B200000-0x7B3FFFFF  | 0x7B000000-0x7B1FFFFF | 2MB                  |
 +------------+-------------------------+------------------------+-----------------------+----------------------+
 
 For more information about memory mapping see the
@@ -222,9 +222,9 @@ DDR
 
 .. code-block:: console
 
-   load mmc 1:1 0x7e000000 /boot/zephyr.bin
+   load mmc 1:1 0x7b000000 /boot/zephyr.bin
    dcache flush
-   bootaux 0x7e000000
+   bootaux 0x7b000000
 
 Load and Run M7 Zephyr Image by using Linux remoteproc
 ======================================================
