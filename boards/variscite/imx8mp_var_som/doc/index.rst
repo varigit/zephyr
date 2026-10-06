@@ -12,7 +12,7 @@ and graphics accelerators.
 Zephyr OS is ported to run on either the Cortex®-A53 or the Cortex®-M7.
 
 Specs Summary
-***************
+*************
 
   - CPU
 
@@ -61,61 +61,20 @@ Specs Summary
     - CAN: x2
   - Temperature range
 
-    - -40°C to 85°C
+    - -40 °C to 85 °C
 
 More information about the SoM can be found at the
-`Variscite Wiki`_ and
+`Variscite Developer Center`_ and
 `Variscite website`_.
 
 Supported Features
-==================
+******************
 
-The Zephyr imx8mp_var_som board for Cortex-A53 configuration support the following hardware
-features:
+.. zephyr:board-supported-hw::
 
-+-----------+------------+-------------------------------------+
-| Interface | Controller | Driver/Component                    |
-+===========+============+=====================================+
-| GIC-v3    | on-chip    | interrupt controller                |
-+-----------+------------+-------------------------------------+
-| ARM TIMER | on-chip    | system clock                        |
-+-----------+------------+-------------------------------------+
-| CLOCK     | on-chip    | clock_control                       |
-+-----------+------------+-------------------------------------+
-| PINMUX    | on-chip    | pinmux                              |
-+-----------+------------+-------------------------------------+
-| RDC       | on-chip    | Resource Domain Controller          |
-+-----------+------------+-------------------------------------+
-| UART      | on-chip    | serial port                         |
-+-----------+------------+-------------------------------------+
+.. note::
 
-The Zephyr imx8mp_var_som board for Cortex-M7 configuration support the following hardware
-features:
-
-+-----------+------------+-------------------------------------+
-| Interface | Controller | Driver/Component                    |
-+===========+============+=====================================+
-| NVIC      | on-chip    | nested vector interrupt controller  |
-+-----------+------------+-------------------------------------+
-| SYSTICK   | on-chip    | systick                             |
-+-----------+------------+-------------------------------------+
-| CLOCK     | on-chip    | clock_control                       |
-+-----------+------------+-------------------------------------+
-| PINMUX    | on-chip    | pinmux                              |
-+-----------+------------+-------------------------------------+
-| UART      | on-chip    | serial port-polling;                |
-|           |            | serial port-interrupt               |
-+-----------+------------+-------------------------------------+
-| GPIO      | on-chip    | GPIO output                         |
-|           |            | GPIO input                          |
-+-----------+------------+-------------------------------------+
-
-The default configuration can be found in the defconfig file:
-:zephyr_file:`boards/variscite/imx8mp_var_som/imx8mp_var_som_mimx8ml8_m7_defconfig`
-
-It is necessary to disable peripherals used by the M7 core on the Linux host.
-
-Other hardware features are not currently supported.
+   It is recommended to disable peripherals used by the M7 core on the Linux host.
 
 Devices
 ========
@@ -143,8 +102,8 @@ Use U-Boot to load and run zephyr.bin on the Cortex-A53:
 
 .. code-block:: console
 
-   load mmc $mmcdev:$mmcpart 0xc0000000 /boot/zephyr.bin
-   dcache flush; icache flush; go 0xc0000000
+   load mmc $mmcdev:$mmcpart $loadaddr /boot/zephyr.bin
+   dcache flush; icache flush; go $loadaddr
 
 Use this configuration to run basic Zephyr applications and kernel tests,
 for example, with the :zephyr:code-sample:`hello_world` sample:
@@ -153,10 +112,10 @@ for example, with the :zephyr:code-sample:`hello_world` sample:
    :zephyr-app: samples/hello_world
    :host-os: unix
    :board: imx8mp_var_som/mimx8ml8/a53
-   :goals: run
+   :goals: build
 
-This will build an image with the hello_world sample app, boot it and display the
-following ram console output:
+This will build an image with the hello_world sample app. When loaded and executed
+it will display the following ram console output:
 
 .. code-block:: console
 
@@ -167,7 +126,9 @@ following ram console output:
 Programming and Debugging (M7)
 ******************************
 
-The VAR-SOM-MX8M-PLUS don't have QSPI flash for the M7, and it needs to be
+.. zephyr:board-supported-runners::
+
+The VAR-SOM-MX8M-PLUS doesn't have QSPI flash for the M7, and it needs to be
 started by the A53 core. The A53 core is responsible to load the M7 binary
 application into the RAM, put the M7 in reset, set the M7 Program Counter and
 Stack Pointer, and get the M7 out of reset. The A53 can perform these steps at
@@ -274,7 +235,7 @@ You can also configure U-Boot to load firmware on boot:
    Finished: Please reboot, the m7 firmware will run during U-Boot
 
 For more information about Variscite remoteproc scripts and general Cortex-M7
-support, visit `Variscite Wiki`_.
+support, visit `Variscite Developer Center`_.
 
 Debugging
 =========
@@ -300,14 +261,14 @@ should see the following message in the terminal:
    Hello World! imx8mp_var_som/mimx8ml8/m7
 
 References
-==========
+**********
 
-- `Variscite Wiki`_
+- `Variscite Developer Center`_
 - `Variscite website`_
 - `i.MX 8M Applications Processor Reference Manual`_
 
-.. _Variscite Wiki:
-   https://variwiki.com/index.php?title=VAR-SOM-MX8M-PLUS
+.. _Variscite Developer Center:
+   https://dev.variscite.com/var-som-mx8m-plus/
 
 .. _Variscite website:
    https://www.variscite.com/product/system-on-module-som/cortex-a53-krait/var-som-mx8m-plus-nxp-i-mx-8m-plus

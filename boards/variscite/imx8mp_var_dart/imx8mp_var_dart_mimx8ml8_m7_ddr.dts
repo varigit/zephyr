@@ -11,6 +11,7 @@
 #include "imx8mp_var_dart-pinctrl.dtsi"
 #include "imx8mp_var_dart_m7-common.dtsi"
 #include <zephyr/dt-bindings/gpio/gpio.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 /delete-node/ &ddr_code;
 /delete-node/ &ddr_sys;
@@ -29,7 +30,6 @@
 	};
 
 	soc {
-
 		ddr_code: code@7b000000 {
 			device_type = "memory";
 			compatible = "nxp,imx-code-bus";
@@ -41,7 +41,6 @@
 			compatible = "nxp,imx-sys-bus";
 			reg = <0x7b200000 DT_SIZE_M(2)>;
 		};
-
 	};
 
 	aliases {
@@ -51,6 +50,7 @@
 
 	leds {
 		compatible = "gpio-leds";
+
 		blinky0: blinky_0 {
 			gpios = <&gpio3 9 GPIO_ACTIVE_HIGH>;
 		};
@@ -58,9 +58,11 @@
 
 	keys {
 		compatible = "gpio-keys";
+
 		button0: btn_0 {
 			label = "BTN0";
-			gpios = <&gpio3 8 (GPIO_PULL_UP|GPIO_ACTIVE_LOW)>;
+			gpios = <&gpio3 8 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			zephyr,code = <INPUT_KEY_0>;
 		};
 	};
 };

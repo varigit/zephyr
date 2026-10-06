@@ -10,6 +10,7 @@
 #include <nxp/nxp_imx8ml_m7.dtsi>
 #include "imx8mp_var_som-pinctrl.dtsi"
 #include <zephyr/dt-bindings/gpio/gpio.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 / {
 	model = "Variscite VAR-SOM-MX8M-PLUS M7";
@@ -31,6 +32,7 @@
 
 	leds {
 		compatible = "gpio-leds";
+
 		blinky0: blinky_0 {
 			gpios = <&gpio3 14 GPIO_ACTIVE_HIGH>;
 		};
@@ -38,9 +40,11 @@
 
 	keys {
 		compatible = "gpio-keys";
+
 		button0: btn_0 {
 			label = "BTN0";
-			gpios = <&gpio3 6 (GPIO_PULL_UP|GPIO_ACTIVE_LOW)>;
+			gpios = <&gpio3 6 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			zephyr,code = <INPUT_KEY_0>;
 		};
 	};
 };
