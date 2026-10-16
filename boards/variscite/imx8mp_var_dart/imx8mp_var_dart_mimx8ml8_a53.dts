@@ -79,3 +79,7 @@
 &gpio3 {
 	status = "okay";
 };
+
+&rdc {
+	status = "disabled";
+};
